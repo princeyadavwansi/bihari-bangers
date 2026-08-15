@@ -891,7 +891,7 @@ function demoSong(name){
 }
 
 
-/* PLAYER DEMO */
+const songs = [     {         title: "Bhojpuri Song 1",         artist: "Bihari Bangers",         file: "song1.mp3"     },     {         title: "Bhojpuri Song 2",         artist: "Bihari Bangers",         file: "song2.mp3"     } ];  let currentSong = 0;  const audio = new Audio();  const playButton =     document.getElementById("playButton");  const songName =     document.getElementById("songName");   function loadSong(index){      currentSong = index;      songName.innerText =         songs[index].title;      audio.src =         songs[index].file;  }   function playSong(){      audio.play()         .then(function(){              playButton.innerText = "⏸";          })         .catch(function(){              alert("Song play nahi ho raha. MP3 file check karo.");          });  }   function playPause(){      if(audio.paused){          playSong();      }else{          audio.pause();          playButton.innerText = "▶";      }  }   function nextSong(){      currentSong++;      if(currentSong >= songs.length){         currentSong = 0;     }      loadSong(currentSong);      playSong();  }   function previousSong(){      currentSong--;      if(currentSong < 0){         currentSong = songs.length - 1;     }      loadSong(currentSong);      playSong();  }   audio.addEventListener("ended", function(){      nextSong();  });   loadSong(0);
 
 let playing = false;
 
